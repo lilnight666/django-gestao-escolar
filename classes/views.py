@@ -104,7 +104,7 @@ def criar_atividade(request):
         data_entrega = request.POST.get('data_entrega')
         material = request.FILES.get('material') 
         turma_id = request.POST.get("turma")
-        professor = request.user
+        professor = request.user.professor
         turma = Turma.objects.get(id=turma_id)
         atividade = Atividade(titulo=titulo, descricao=descricao, data_entrega=data_entrega, professor=professor, material=material, turma=turma)
         atividade.save()
