@@ -32,7 +32,7 @@
       <li>
         <h2>Aluno: {{ resposta.aluno.username }}</h2>
         <p>Data de envio: {{ resposta.data_envio }}</p>
-        <p>dowload do arquivo enviado:  <a href="{% url 'download_resposta' resposta.pk %}">{{ resposta.arquivo.name }}</a></p>
+        <p>ver arquivo do aluno:<a href="{% url 'ver_resposta' resposta.pk %}">{{ resposta.arquivo.name }}</a></p>
         <p>Status: {{ resposta.get_aprovacao_display }}</p>
         <form method="post" action="{% url 'aprovar_resposta' pk=resposta.pk %}">{% csrf_token %}
 

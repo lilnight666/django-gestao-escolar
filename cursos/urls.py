@@ -36,7 +36,7 @@ urlpatterns = [
     path('listar_respostas/<int:pk>/', views.listar_respostas, name='listar_respostas'),
     path('aprovar_resposta/<int:pk>/', views.aprovar_resposta, name='aprovar_resposta'),
     path('accounts/login/', views.login_user, name='login'),
-    path('download_resposta/<int:pk>/', views.download_resposta, name='download_resposta'),
+    path('ver/<int:pk>/', views.ver_resposta, name='ver_resposta'),
     path('accounts/login/submit', views.submit_login),
     path('logout/', views.logout_user, name='logout'),
    

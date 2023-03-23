@@ -189,7 +189,7 @@ def aprovar_resposta(request, pk):
 
 
 @login_required(login_url='/login/')
-def download_resposta(request, pk):
+def ver_resposta(request, pk):
     resposta = get_object_or_404(RespostaAtividade, pk=pk)
     response = FileResponse(resposta.arquivo)
     response['Content-Disposition'] = f'attachment; filename="{resposta.arquivo.name}"'
