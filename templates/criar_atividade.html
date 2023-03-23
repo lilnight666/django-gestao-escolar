@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>criar atividade</title>
+    <link rel="stylesheet" href="{% static 'css/cria.css'%}">
+        
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="/logout">logout</a>
+
+          <a href="/turmas">voltar</a>
+        </nav>
+       
+       </header>
+
+   <main>
+    <section>
+        <form action="" method="POST"  enctype="multipart/form-data">{%csrf_token%}
+        <label for="turma">turma</label>
+           <select id="turma" name="turma">
+          {% for turma in turmas %}
+            <option value="{{ turma.id }}">{{ turma.sala }}</option>
+          {% endfor %}
+            </select>
+            <br><br>
+            <label for="titulo">tiulo</label>
+            
+            <input type="text" name="titulo">
+            
+     
+            <label for="descricao">descrição da atividade</label><br>
+
+            <textarea name="descricao" id="" cols="30" rows="10"></textarea>
+    
+            <label for="data_entrega">data de entrega</label>
+
+            <input type="datetime" name="data_entrega" id="" >
+            
+            <label for="material">material</label>
+            <input id="file" type="file" name="material" >
+           <div>
+            <input  type="submit" value="criar ">
+           </div>
+            
+
+      
+        
+    </form>
+    </section>
+   
+   </main>
+   <footer>
+    <h1>by  manuel richard </h1>
+   </footer>
+   
+</body>
+</html>

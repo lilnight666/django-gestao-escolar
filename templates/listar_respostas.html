@@ -1,0 +1,64 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/visu.css' %}">
+</head>
+<body>
+  
+
+
+<header>
+  <h1>Respostas para {{ atividade.titulo }}</h1>
+ <nav>
+   <a href="/logout">logout</a>
+   {% if request.user.professor %}
+       <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
+   {% endif %}
+   <a href="/turmas">">voltar</a>
+ </nav>
+</header>
+<main>
+<section>
+  {% block content %}
+{% if respostas %}
+  <ul>
+    {% for resposta in respostas %}
+      <li>
+        <h2>Aluno: {{ resposta.aluno.username }}</h2>
+        <p>Data de envio: {{ resposta.data_envio }}</p>
+        <p>dowload do arquivo enviado:  <a href="{% url 'download_resposta' resposta.pk %}">{{ resposta.arquivo.name }}</a></p>
+        <p>Status: {{ resposta.get_aprovacao_display }}</p>
+        <form method="post" action="{% url 'aprovar_resposta' pk=resposta.pk %}">{% csrf_token %}
+
+          
+          <button type="submit" name="avaliar" value="1">avaliar aluno</button>
+         
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% else %}
+  <h1>Nenhuma resposta enviada ainda</h1>
+{% endif %}
+{% endblock %}
+
+
+</section>
+
+
+</main>
+</body>
+</html>
+
+
+
+
+
+

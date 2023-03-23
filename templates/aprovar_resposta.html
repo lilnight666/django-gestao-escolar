@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/envio.css' %}">
+</head>
+<body>
+  
+<main>
+  <section>
+    {% block content %}
+    <h1>avaliar resposta</h1>
+    <form method="POST">{% csrf_token %}
+     
+      {{ form.as_p }}
+      <button type="submit">Salvar</button>
+    </form>
+   
+  s
+    <p>Resposta enviada por {{ resposta.aluno.username }} em {{ resposta.data_envio }}</p>
+    
+  
+  {% endblock %}
+    
+  
+  </section>
+  <body>
+    
+  </body>
+  </html>
+  
+  
+  
+  
+
+</main>
+
+
+</body>
+</html>
+
+
+

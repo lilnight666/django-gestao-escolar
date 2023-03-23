@@ -1,0 +1,62 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/envio.css'%}">
+
+</head>
+<body>
+  
+
+
+<header>
+  <h1>Respostas para {{ atividade.titulo }}</h1>
+ <nav>
+   <a href="/logout">logout</a>
+   {% if request.user.professor %}
+       <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
+   {% endif %}
+   <a href="{% url 'visualizar_atividades' turma_id=atividade.turma.id%}">voltar</a>
+ </nav>
+</header>
+<main>
+<section>
+  {% block content %}
+  <h1>Enviar arquivo resposta</h1>
+  <p><strong>Atividade:</strong> {{ atividade.descricao}}</p>
+  
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <input type="submit" value="enviar atividade ">
+  </form>
+  
+{% endblock %}
+ 
+
+
+</section>
+</main>
+</body>
+</html>
+
+
+
+
+
+

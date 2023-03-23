@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/visu.css' %}">
+  <title>Document</title>
+
+</head>
+<body>
+  
+
+
+<header>
+ <nav>
+   <a href="/logout">logout</a>
+          {% if request.user.professor %}
+              <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
+          {% endif %}
+   <a href="/turmas">voltar</a>
+ </nav>
+
+</header>
+<main>
+  <section>
+    {% block content %}
+    <h1>Atividades Criadas</h1>
+    <h1>    {% if messages %}
+      {% for message in messages %}
+           <div class="alert alert-{{ message.tags }}">
+             {{ message }}
+           </div>
+       {% endfor %}
+   {% endif %}</h1>
+    {% if atividades %}
+      <ul>
+      {% for atividade in atividades %}
+        <li>
+          <h2>{{ atividade.titulo }}</h2>
+          <p>{{ atividade.descricao }}</p>
+          <p> {{ atividade.turma}} </p>
+          {% if atividade.material %}
+             <p>Material: <a href="{{ atividade.material_url }}" >{{ atividade.material.name }}</a></p>
+          {% endif %} 
+
+          <h2>professor:{{atividade.professor.user.username}}</h2>
+          <a href="{% url 'enviar_resposta' atividade.pk %}">Enviar atividade</a>
+          
+            <a href="{% url 'listar_respostas' atividade.pk %}">Ver Respostas</a>
+        
+          {% if request.user.professor %}
+          <a id="delete" href="{% url 'deletar_atividade' atividade.pk %}">excluir atividade</a>
+         {% endif %}
+
+      {% endfor %}
+  
+</form>
+        </li>
+         
+      </ul>
+    {% else %}
+          <h2>{{ atividade.titulo }}</h2>
+          <p>{{ atividade.descricao }}</p>
+    {% endif %}
+    
+   
+      
+        
+   
+   
+   
+   
+   
+   {% endblock %}
+   
+   </section>
+
+</main>
+
+
+
+
+</body>
+</html>

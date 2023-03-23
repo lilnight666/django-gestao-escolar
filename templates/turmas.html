@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/visu.css' %}">
+  <title>Document</title>
+
+</head>
+<body>
+  
+
+
+<header>
+ <nav>
+  <form action="{% url 'join_turma'%}" method="post">{% csrf_token %}
+
+    <label for="codigo_turma">se juntar a uma turma:</label>
+    <input type="text" name="codigo_turma" placeholder="codigo da turma">
+    <button type="submit">Enviar</button>
+    {% if request.user.professor %}
+        <a href="{% url 'criar_turma' %}">criar nova turma</a>
+     {% endif %}
+    <a href="/logout">logout</a>
+    {% if messages %}
+       {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</form>
+ </nav>
+
+</header>
+<main>
+  <section>
+
+
+    {% block content %}
+    <h1>turmas</h1>
+      <ul>
+      {% if turma %}
+      {% for t in turma %}
+          
+        <li>
+          <h2>{{ t.sala }}</h2>
+          <p>{{ t.descricao }}</p>
+          <p>{{ t.professor.user.username  }}</p>
+          <p>codigo da turma: {{t.codigo }} </p>
+           
+          <a href="{% url 'visualizar_atividades' turma_id=t.pk %}">Ver atividades</a>
+       </li>
+       {% endfor %} 
+      {% endif %}
+    {% endblock %}
+    
+
+
+   
+
+   
+   
+   
+   </section>
+
+</main>
+
+
+
+
+</body>
+</html>
