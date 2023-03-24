@@ -75,6 +75,7 @@ def turmas(request):
     professor = Professor.objects.filter(user=request.user).first()
     if professor:
         turma = Turma.objects.filter(professor=professor)
+        
     else:
         turma = Turma.objects.filter(alunoturma__aluno=request.user)
     return render(request, 'turmas.html', {'turma': turma})
