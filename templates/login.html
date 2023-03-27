@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <style>
+        a{
+            display: block;
+             font-size: 1em;
+             color: white;
+             width: 80%;
+             height: 30px;
+             text-decoration: none;
+             border: none;
+             border-radius: 10px;
+             background-color: rgb(22, 26, 231);
+             text-align: center;
+        }
         *{
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    padding: 0px;
@@ -101,18 +113,17 @@ form> a.botao:hover{
                 
 
             </div>
-            <div id="formulario">
-                
-               
-               
+            <div id="formulario">   
                 <form action="submit" method="POST" >{% csrf_token %}
-                       <div class="campo">
+                  <div class="campo">
                                 <label for="username">usuario</label>
                                 <input type="text" name="username">
                                 <label for="password">password</label>
                                 <input type="password" name="password" id="password">
                                 <input  type="submit" value="logar">
-                                <a href="{% url 'cadastrar' %}">cadastrar</a>
+                               <br><br>
+                                <label for="cadas">ainda não tem uma conta?</label>
+                                <a name="cadas" href="{% url 'cadastrar' %}">cadastrar nova conta</a>
                                 {% if messages %}
                                 {% for message in messages %}
                                     <div class="alert alert-{{ message.tags }}">

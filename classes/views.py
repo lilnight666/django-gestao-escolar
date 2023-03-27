@@ -38,7 +38,6 @@ def cadastrar(request):
         is_prof = request.POST.get("is_prof", False)
 
         hashed_password = make_password(password)
-        # usar make_password para criptografar a senha
         u=User.objects.create(username=username, password=hashed_password, email=email)
         u.save()
         login(request,u)
@@ -51,19 +50,18 @@ def cadastrar(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
-
-@login_required(login_url='/login/')
+@login_required(login_url='/accounts/login')
 def join_turma(request):
     if request.method == 'POST':
         codigo_turma = request.POST['codigo_turma']
         aluno = request.user
 
         if AlunoTurma.join_turma(codigo_turma, aluno):
-            mensagem = 'Você foi adicionado à turma com sucesso.'
+             messages.success(request, "Você foi adicionado à turma com sucesso.'")
         else:
             mensagem = 'O código da turma é inválido. Tente novamente.'
-
-        return redirect("/turmas" )
+        
+        return redirect("/turmas",)
 
     return redirect('/turmas')
 
@@ -82,7 +80,7 @@ def turmas(request):
 
 
 
-
+@login_required(login_url='/accounts/login')
 def crir_turma(request):
     if request.method== "GET":
         return render(request, "criar_turma.html")
@@ -90,13 +88,12 @@ def crir_turma(request):
         sala=request.POST.get("sala")
         descricao=request.POST.get("descricao")
         professor = Professor.objects.get(user=request.user)
-        print(professor)
         Turma.objects.create(sala=sala,descricao=descricao,professor=professor)
 
         return redirect("/turmas")
 
 
-
+@login_required(login_url='/accounts/login')
 def criar_atividade(request):
     turmas = Turma.objects.filter(professor=request.user.professor)
     if request.method == 'POST':
@@ -120,7 +117,7 @@ def editar_atividade(request):
         data_entrega = request.POST.get('data_entrega')
         material = request.FILES.get('material')  
         professor = request.user
-        atividade = Atividade.objects.update(titulo=titulo, descricao=descricao, data_entrega=data_entrega, professor=professor, material=material)  # corrigido
+        atividade = Atividade.objects.update(titulo=titulo, descricao=descricao, data_entrega=data_entrega, professor=professor, material=material) 
         atividade.save()
         messages.success(request, 'Atividade editada com sucesso.')
         return redirect('visualizar_atividades')

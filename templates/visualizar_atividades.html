@@ -10,8 +10,6 @@
 
 </head>
 <body>
-  
-
 
 <header>
  <nav>
@@ -19,6 +17,7 @@
           {% if request.user.professor %}
               <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
           {% endif %}
+  
    <a href="/turmas">voltar</a>
  </nav>
 
@@ -42,14 +41,16 @@
           <p>{{ atividade.descricao }}</p>
           <p> {{ atividade.turma}} </p>
           {% if atividade.material %}
-             <p>Material: <a href="{{ atividade.material_url }}" >{{ atividade.material.name }}</a></p>
+             <p>Material: <a  href="{{ atividade.material_url }}" target="_blank" >{{ atividade.material.name }}</a></p>
           {% endif %} 
+          
+
 
           <h2>professor:{{atividade.professor.user.username}}</h2>
           <a href="{% url 'enviar_resposta' atividade.pk %}">Enviar atividade</a>
-          
+            {% if request.user.professor%}
             <a href="{% url 'listar_respostas' atividade.pk %}">Ver Respostas</a>
-        
+            {% endif %}
           {% if request.user.professor %}
           <a id="delete" href="{% url 'deletar_atividade' atividade.pk %}">excluir atividade</a>
          {% endif %}
