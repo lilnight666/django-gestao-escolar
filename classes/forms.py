@@ -1,18 +1,16 @@
 from django import forms
 from .models import RespostaAtividade
+from django import forms
+from django.forms.widgets import ClearableFileInput
 
-class RespostaForm(forms.ModelForm):
-    class Meta:
-        model = RespostaAtividade
-        fields = ['arquivo']
-        
-        widgets = {
-            'arquivo': forms.ClearableFileInput(attrs={'class': 'custom-file-input'})
-        }
+class CustomClearableFileInput(ClearableFileInput):
+    def get_context(self, name, value, attrs):
+        attrs.pop('required', None)
+        return super().get_context(name, value, attrs)
 
-        required = {
-            'aprovacao': False
-        }
+
+
+
 
 
 

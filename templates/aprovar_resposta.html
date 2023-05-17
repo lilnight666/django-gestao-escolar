@@ -15,12 +15,11 @@
     {% block content %}
     <h1>avaliar resposta</h1>
     <form method="POST">{% csrf_token %}
-     
       {{ form.as_p }}
-      <button type="submit">Salvar</button>
+      <button id="sav" type="submit">Salvar</button>
     </form>
     
-    <p>Resposta enviada por {{ resposta.aluno.username }} em {{ resposta.data_envio }}</p>
+    <p>atividade  enviada por {{ resposta.aluno.username }} em {{ resposta.data_envio }}</p>
     
   
   {% endblock %}

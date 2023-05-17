@@ -23,9 +23,9 @@
 
 </header>
 <main>
-  <section>
+  <section >
     {% block content %}
-    <h1>Atividades Criadas</h1>
+    <h1>Atividades </h1>
     <h1>    {% if messages %}
       {% for message in messages %}
            <div class="alert alert-{{ message.tags }}">
@@ -33,49 +33,33 @@
            </div>
        {% endfor %}
    {% endif %}</h1>
-    {% if atividades %}
-      <ul>
-      {% for atividade in atividades %}
-        <li>
-          <h2>{{ atividade.titulo }}</h2>
-          <p>{{ atividade.descricao }}</p>
-          <p> {{ atividade.turma}} </p>
-          {% if atividade.material %}
-             <p>Material: <a  href="{{ atividade.material_url }}" target="_blank" >{{ atividade.material.name }}</a></p>
-          {% endif %} 
-          
-
-
-          <h2>professor:{{atividade.professor.user.username}}</h2>
-          <a href="{% url 'enviar_resposta' atividade.pk %}">Enviar atividade</a>
-            {% if request.user.professor%}
-            <a href="{% url 'listar_respostas' atividade.pk %}">Ver Respostas</a>
-            {% endif %}
-          {% if request.user.professor %}
-          <a id="delete" href="{% url 'deletar_atividade' atividade.pk %}">excluir atividade</a>
-         {% endif %}
-
-      {% endfor %}
-  
-</form>
-        </li>
-         
-      </ul>
-    {% else %}
-          <h2>{{ atividade.titulo }}</h2>
-          <p>{{ atividade.descricao }}</p>
-    {% endif %}
-    
-   
-      
-        
-   
-   
-   
-   
-   
    {% endblock %}
+  
+    {% for atividade in atividades %}
+         
+         
+        <a class="atividade-link"  href="{{ atividade.get_absolute_url }}">
+            <h1>{{ atividade.titulo }}</h1>
+            <p>{{ atividade.descricao }}</p>
+            <p>{{ atividade.turma }}</p>
+            {% if atividade.get_atividade_pendente %}
+            <p>Pendente</p> 
+        
+            {% endif %}
+            
+  
+           
+        </a>
+       
+
+        
+
    
+      {% endfor %}
+
+<ul>
+
+
    </section>
 
 </main>

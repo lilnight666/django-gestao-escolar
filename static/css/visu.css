@@ -1,25 +1,25 @@
 
 header{
              
-    padding-top: 50px;
-  
-    background-color: rgb(0, 115, 160);
+  padding-top: 50px;
+
+  background-color: rgb(0, 115, 160);
 }
 nav{
-    background-color: rgb(2, 0, 121);
-    padding: 40px;
+  background-color: rgb(2, 0, 121);
+  padding: 40px;
 
-    text-align: justify;
+  text-align: justify;
 }
 nav>a{
-    
-    color: white;
-    padding: 20px;
-    text-decoration: none;
-    
+  
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  
 }
 nav>a:hover{
-    background-color: rgb(0, 204, 255);
+  background-color: rgb(0, 204, 255);
 }
 section{
 background-color: rgb(0, 47, 255);
@@ -33,7 +33,7 @@ background-color: rgb(0, 217, 255);
 }
 a{
 color: white;
-margin: 10px;
+margin: 5px;
 padding: 10px;
 border-radius: 15px;
 text-decoration: none;
@@ -45,38 +45,153 @@ background-color: rgb(0, 50, 212);
 
 
 body{
-   background-color: rgb(0, 174, 255);
-   margin: 0px;
-   padding: 0px
+ background-color:  rgb(11, 35, 255);
+ margin: 0px;
+ padding: 0px
 }
 main{
-   background-color: rgb(11, 35, 255);
-   padding-top: 5px;
-   padding: auto;
+ background-color: rgb(11, 35, 255);
+ padding-top: 5px;
+ padding: auto;
 
 
 }
 h1{
-   text-align: center;
+ text-align: center;
 }
 p{
-   text-align: center;
+ text-align: center;
 }
 img{
-   margin: 15,8px;
-   border-radius: 40px;
+ margin: 15,8px;
+ border-radius: 40px;
 }
 footer{
-   color: aliceblue;
-   margin: 10;
-   padding: 5px;
-   background-color: darkblue;
-   text-align: center;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ color: aliceblue;
+ margin: 10;
+ padding: 5px;
+ background-color: darkblue;
+ text-align: center;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 #sla{
-   margin: 70px;
+ margin: 70px;
 }
-#delete{
- background-color: rgb(255, 0, 255);
+
+
+textarea {
+display: block;
 }
+#com
+{
+ margin-top: 20px; 
+ margin-bottom: 20px;
+}
+
+.atividade-link {
+ display: block;
+ background-color: rgb(0, 217, 255);
+ padding: 5px;
+ border-radius: 10px;
+ text-decoration: none;
+ color: #333;
+ margin-top: 4px;
+ margin-bottom: 10px;
+}
+
+.atividade-link:hover {
+ background-color: #00a6c4;
+}
+.comentario {
+ border: none; 
+ border-radius: 5px;
+ padding: 10px;
+ margin-bottom: 20px;
+}
+
+
+.comentario-texto {
+ margin: 0;
+ font-size: 16px;
+ line-height: 1.4;
+ color: white;
+ text-align: left;
+
+}
+
+.comentario-texto:before {
+ content: "\f007";
+ font-family: "Font Awesome 5 Free";
+ font-weight: 900;
+ margin-right: 10px;
+ color: #3500c7;
+}
+
+p.Nenhum-comentario {
+ margin: 0;
+ font-size: 16px;
+ color: #999;
+ font-style: italic;
+}
+#comentarios{
+ background-color: rgb(30, 131, 161);
+ border-radius: 15px;
+}
+button{
+ margin: 10px;
+ padding: 10px;
+ border-radius: 10px;
+ background-color: #3d00e4;
+}
+#turma{
+ background-color: rgba(0, 238, 255, 0.781);
+ margin: 25px;
+ padding: 25px;
+ border-radius: 20px;
+ 
+}
+#resp{
+ background-color: #418dff;
+ margin: 25px;
+ padding: 25px;
+ border-radius: 15px;
+}
+
+input[type="file"] {
+  background-color: #00687a;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+}
+.custom-file-input {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  position: absolute;
+  left: -9999px;
+}
+
+.file-label {
+  background-color: #f2f2f2;
+  color: #333333;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.file-input:focus + .file-label,
+.file-label:hover {
+  background-color: #e0e0e0;
+}
+
+#norm{
+ text-align: left;
+}
+
+

@@ -132,3 +132,64 @@ a{
     #sla{
         margin: 70px;
     }
+    .custom-file-input::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+      
+      .custom-file-input::before {
+        content: 'Escolher arquivo';
+        display: inline-block;
+        background: #007bff;
+        color: #fff;
+        padding: 6px 12px;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        margin-right: 10px;
+      }
+      
+      .custom-file-input:hover::before {
+        background: #0069d9;
+        color: #2d3766;
+      }
+      
+      .custom-file-input:active::before {
+        background: #0062cc;
+        color: #fff;
+      }
+      .btn {
+        background-color: #1b57d6; 
+        color: white; 
+        border: none; 
+        padding: 12px 24px; 
+        font-size: 16px; 
+        cursor: pointer; 
+        border-radius: 4px; 
+      }
+      
+
+      .btn:hover {
+        background-color: #185294;
+      }
+      #sav{
+        background-color: #1b57d6; 
+        color: white; 
+        border: none; 
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }

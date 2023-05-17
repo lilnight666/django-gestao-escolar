@@ -20,7 +20,7 @@
    {% if request.user.professor %}
        <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
    {% endif %}
-   <a href="/turmas">">voltar</a>
+   <a href="/turmas">voltar</a>
  </nav>
 </header>
 <main>
@@ -28,11 +28,18 @@
   {% block content %}
 {% if respostas %}
   <ul>
+    {% if messages %}
+    {% for message in messages %}
+         <div class="alert alert-{{ message.tags }}">
+           {{ message }}
+         </div>
+     {% endfor %}
+     {% endif %}
     {% for resposta in respostas %}
       <li>
         <h2>Aluno: {{ resposta.aluno.username }}</h2>
         <p>Data de envio: {{ resposta.data_envio }}</p>
-        <p>ver arquivo do aluno:<a href="{% url 'ver_resposta' resposta.pk %}">{{ resposta.arquivo.name }}</a></p>
+        <p>ver arquivo do aluno:<a href="{% url 'ver_resposta' resposta.pk %}">dowload do aquivo enviado</a></p>
         <p>Status: {{ resposta.get_aprovacao_display }}</p>
         <form method="post" action="{% url 'aprovar_resposta' pk=resposta.pk %}">{% csrf_token %}
 

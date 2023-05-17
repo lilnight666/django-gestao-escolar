@@ -1,0 +1,55 @@
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nova turma </title>
+    <link rel="stylesheet" href="{% static 'css/cria.css'%}">
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="/logout">logout</a>
+
+          <a href="/turmas">voltar</a>
+        </nav>
+       
+       </header>
+
+   <main>
+    <section>
+        
+<p>peça o codigo da sala para seu professor</p>
+<form action="{% url 'join_turma'%}" method="post">{% csrf_token %}
+
+    <label for="codigo_turma">se juntar a uma turma:</label>
+    <input type="text" name="codigo_turma" placeholder="codigo da turma">
+    <button id="mop"  type="submit">Enviar</button>
+    Para fazer login com o código da turma
+Use uma conta autorizada.
+Use um código da turma, com cinco a sete letras ou números, sem espaços ou símbolos.
+Se tiver problemas para participar da turma, consulte este artigo da Central de Ajuda.
+       
+
+      
+           
+            
+
+      
+        
+   
+    </section>
+   
+   </main>
+   <footer>
+    <h1>by  manuel richard </h1>
+   </footer>
+   
+</body>
+</html>
+

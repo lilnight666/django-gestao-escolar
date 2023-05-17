@@ -96,7 +96,7 @@ form> a.botao:hover{
     <main>
         <section id="login">
             <div id="espac">
-                <h1>Cadastro da classe</h1>
+                <h1> Cadastro </h1>
             </div>
             <div id="formulario">
                 <form action="{% url 'cadastrar' %}" method="POST" >{% csrf_token %}
@@ -117,11 +117,12 @@ form> a.botao:hover{
                     </div>          
                         <label for="is_prof">É professor?</label>
                         <input type="checkbox" name="is_prof">
-                    </div>
+                    </div class="campo">
+                       <input  type="submit" value="Cadastrar">
 
 
                     </div>
-                        <input type="submit" value="Cadastrar">
+                        
                 </form>
             </div>
         

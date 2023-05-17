@@ -15,11 +15,8 @@
 
 <header>
  <nav>
-  <form action="{% url 'join_turma'%}" method="post">{% csrf_token %}
-
-    <label for="codigo_turma">se juntar a uma turma:</label>
-    <input type="text" name="codigo_turma" placeholder="codigo da turma">
-    <button type="submit">Enviar</button>
+  
+    <a href="{%url 'nova_turma'%}">se juntar a uma turma</a>
     {% if request.user.professor %}
         <a href="{% url 'criar_turma' %}">criar nova turma</a>
      {% endif %}
@@ -31,7 +28,8 @@
             </div>
         {% endfor %}
     {% endif %}
-</form>
+    <a href=" {% url 'pendente' %}">pendente</a>
+
  </nav>
 
 </header>
@@ -45,14 +43,16 @@
       {% if turma %}
       {% for t in turma %}
           
-        <li>
+        <section id="turma">
           <h2>{{ t.sala }}</h2>
           <p>{{ t.descricao }}</p>
-          <p>{{ t.professor.user.username  }}</p>
-          <p>codigo da turma: {{t.codigo }} </p>
-           
+          <p>professor:{{ t.professor.user.username  }}</p>
+         
           <a href="{% url 'visualizar_atividades' turma_id=t.pk %}">Ver atividades</a>
-       </li>
+
+        </section>
+         
+    
        {% endfor %} 
       {% endif %}
     {% endblock %}

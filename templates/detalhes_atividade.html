@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/visu.css' %}">
+  <title>Document</title>
+
+</head>
+<body>
+
+<header>
+ <nav>
+  {{ user.username }}
+   <a href="/logout">logout</a>
+          {% if request.user.professor %}
+              <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
+          {% endif %}
+  
+   <a href="/turmas">voltar</a>
+ </nav>
+
+</header>
+<main>
+  <section>
+  
+ 
+  
+    {% block content %}
+   
+    <h1>{% if messages %}
+      {% for message in messages %}
+           <div class="alert alert-{{ message.tags }}">
+             {{ message }}
+           </div>
+       {% endfor %}
+   {% endif %}</h1>
+
+      <ul>
+    
+        <li>   
+          {% if atividade.get_atividade_pendente %}
+               <p>Pendente</p> 
+
+          {% else %}
+              <p>testde</p>
+
+
+          {% endif %}                
+
+     
+
+       
+          <h2>{{ atividade.titulo }}</h1>
+            <aside>
+              <h2>data de entrega:{{ atividade.data_entrega }}</h2>
+              
+
+              
+
+            </aside>
+     
+       
+          <p>{{ atividade.descricao }}</p>
+       
+       
+          {% if atividade.material %}
+             <p>Material: <a  href="{{ atividade.material_url }}" target="_blank" >link material</a></p>
+          {% endif %} 
+
+          <h2>professor:{{atividade.professor.user.username}}</h2>
+          
+            {% if request.user.professor%}
+            <a href="{% url 'listar_respostas' atividade.pk %}">Ver Respostas</a>
+            {% endif %}
+            {% for atividade in atividades %}
+               <a href="{{ atividade.get_absolute_url }}">{{ atividade.titulo }}</a>
+           {% endfor %}
+           {% if request.user.professor %}
+             <a class="dropdown-item" href="{% url 'editar_atividade' atividade.pk %}">Editar atividade</a>
+             <a id="delete" href="{% url 'deletar_atividade' atividade.pk %}">Excluir atividade</a>
+           {% endif %}
+     
+       
+          
+         <br>
+         <br>
+         <section id="comentarios">
+          <h2>Comentários da turma</h2>
+          {% for comentario in atividade.comentarios %}
+            <div class="comentario">
+              <p class="comentario-texto">{{ comentario.autor }}: {{ comentario.comentario }}</p> 
+            </div>
+            {% if request.user.username == comentario.autor or request.user.professor %}
+
+            <form action="{% url 'excluir_comentario' comentario.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Excluir</button>
+            </form>
+        
+  
+            {% endif %}
+  
+          {% empty %}
+            <p>Nenhum comentário.</p>
+          {% endfor %}
+          <form method="POST" action="{% url 'add_comentario' pk=atividade.id %}">
+            {% csrf_token %}
+              <input type="hidden" name="usuario_id" value="{{ request.user.id }}">
+            <label for="comentario">Comentário:</label>
+            <textarea name="comentario" id="" cols="100" rows="2" placeholder="envie um comentario para a turma"></textarea>
+            <button type="submit" >adicionar comentario</button>
+          </form>
+       
+             
+        <section id="resp">
+            <form  action="{% url 'enviar_atividade' pk=atividade.id %}"id="resp-form" method="post" enctype="multipart/form-data" class="meu-formulario">
+              {% csrf_token %}
+              <h1>seus trabalhos </h1>
+
+            
+          
+            <div class="custom-file-input">
+              <input type="file" id="resposta" name="resposta" class="file-input">
+              <label for="resposta" class="file-label">Selecionar arquivo resposta</label>
+            </div>
+
+            
+            
+              <button type="submit" class="meu-botao">entregar  </button>
+            </form> 
+            
+            
+            
+          </section>
+        
+
+         
+  
+      
+          
+
+      
+
+
+        </li>
+      </ul>
+    
+   {% endblock %}
+   
+   </section>
+   
+
+</main>
+</body>
+</html>

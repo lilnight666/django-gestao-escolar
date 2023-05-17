@@ -1,0 +1,61 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/visu.css' %}">
+  <title>Document</title>
+
+</head>
+<body>
+
+<header>
+ <nav>
+   <a href="/logout">logout</a>
+          {% if request.user.professor %}
+              <a href="{% url 'criar_atividade' %}">criar nova atividade</a>
+          {% endif %}
+  
+   <a href="/turmas">voltar</a>
+ </nav>
+
+</header>
+<main>
+  <section >
+
+
+{% block content %}
+<h1>Atividades Atrasadas</h1>
+{% if atividades %}
+{% for atividade in atividades %}
+
+<a class="atividade-link"  href="{{ atividade.get_absolute_url }}">
+    <h1>{{ atividade.titulo }}</h1>
+    <h2> {{ atividade.professor.user.username }}</h2>
+    <p>{{ atividade.descricao }}</p>
+    <p>{{ atividade.turma }}</p>
+    <p>Data de entrega: {{ atividade.data_entrega|date:"d/m/Y" }}</p>
+    
+</a>
+{% endfor %}
+
+{% else %}
+  <p>Não há atividades atrasadas .</p>
+{% endif %}
+{% endblock %}
+    
+
+
+
+   </section>
+
+</main>
+
+
+
+
+</body>
+</html>
